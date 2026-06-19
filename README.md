@@ -17,7 +17,9 @@ Not included:
 Users can install their own GUI later, for example:
   sudo apt update
   sudo apt install xfce4 lightdm firefox-esr
-
+## Requirements
+- You must have UART hooked in your board
+- Recommend using Linux PC to run sunxi-fel, they are not working great on WSL2 with USB Passthrough (usually timeout)
 # Installation guide
 ## Load images to ram and boot to rescue u-boot first
 ```
@@ -54,7 +56,8 @@ echo ${fdtcontroladdr}
 cp.b ${fdtcontroladdr} ${fdt_addr_r} 0x40000
 fdt addr ${fdt_addr_r}
 fdt resize 0x20000
-
+```
+```
 fdt set /soc/mmc@1c10000 status disabled
 fdt set /soc/mmc@1c11000 status okay
 fdt set /soc/mmc@1c11000 pinctrl-names default
@@ -63,7 +66,9 @@ fdt set /soc/mmc@1c11000 vmmc-supply <0x00000009>
 fdt set /soc/mmc@1c11000 bus-width <0x00000008>
 fdt set /soc/mmc@1c11000 non-removable
 fdt set /soc/mmc@1c11000 cap-mmc-highspeed
-
+```
+Don't paste the mmc fdt set with the bottom, as they are known to break in UART pasting
+```
 fdt set /soc/usb@1c19000 status okay
 fdt set /soc/usb@1c19000 dr_mode peripheral
 fdt set /soc/phy@1c19400 status okay
@@ -72,6 +77,7 @@ setenv bootargs 'console=ttyS0,115200 earlyprintk rdinit=/init rw loglevel=8'
 
 bootz ${kernel_addr_r} ${ramdisk_addr_r}:${initrd_size} ${fdt_addr_r}
 ```
+
 ### In rescue shell, confirm eMMC exist
 ```
 cat /proc/partitions
@@ -116,3 +122,4 @@ cat /sys/class/leds/x6pro:blue:status/trigger
 echo default-on | sudo tee /sys/class/leds/x6pro:red:pwr/trigger
 echo heartbeat | sudo tee /sys/class/leds/x6pro:blue:status/trigger
 ```
+## If you want to go back, use OpenixSuit to flash stock img, i have included in release
