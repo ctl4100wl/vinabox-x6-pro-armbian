@@ -43,7 +43,7 @@ sudo sunxi-fel -p write "$KERNEL_ADDR" "$KERNEL"
 sudo sunxi-fel -p write "$INITRD_ADDR" "$INITRD"
 sudo sunxi-fel -p uboot "$UBOOT" 
 ```
-## UART: U-Boot setup to boot the kernel
+## UART: U-Boot setup to boot the kernel  
 ```
 setenv kernel_addr_r 0x42000000
 setenv ramdisk_addr_r 0x43400000
@@ -68,6 +68,7 @@ fdt set /soc/mmc@1c11000 non-removable
 fdt set /soc/mmc@1c11000 cap-mmc-highspeed
 ```
 Don't paste the mmc fdt set with the bottom, as they are known to break in UART pasting
+The initrd size below matches the rescue `initramfs.cpio.gz` included in this release. Do not change the rescue files unless you also recalculate `initrd_size`.
 ```
 fdt set /soc/usb@1c19000 status okay
 fdt set /soc/usb@1c19000 dr_mode peripheral
@@ -78,7 +79,7 @@ setenv bootargs 'console=ttyS0,115200 earlyprintk rdinit=/init rw loglevel=8'
 bootz ${kernel_addr_r} ${ramdisk_addr_r}:${initrd_size} ${fdt_addr_r}
 ```
 
-### In rescue shell, confirm eMMC exist
+### In rescue shell, confirm eMMC exists
 ```
 cat /proc/partitions
 ls -l /dev/mmcblk*
@@ -89,7 +90,7 @@ fdisk -l /dev/mmcblk1
 xzcat Vinabox-X6-Pro-Armbian_26.08_Trixie_6.18.35_Core_eMMC.img.xz | \
   ncat -l 9000 --send-only
 ```
-## Rescue shell: Recieve then flash to eMMC then reboot
+## Rescue shell: Receive then flash to eMMC then reboot
 ```
 busybox nc 10.66.0.1 9000 | dd of=/dev/mmcblk1 bs=4M conv=fsync status=progress
 sync
@@ -122,4 +123,8 @@ cat /sys/class/leds/x6pro:blue:status/trigger
 echo default-on | sudo tee /sys/class/leds/x6pro:red:pwr/trigger
 echo heartbeat | sudo tee /sys/class/leds/x6pro:blue:status/trigger
 ```
-## If you want to go back, use OpenixSuit to flash stock img, i have included in release
+## Returning to stock
+Hold the button in the hole you found at the back of the box right at bottom middle of 2 usb ports then plug Type A-A USB in and release, you should be in FEL
+Use OpenixSuit in FEL/libusb mode on Windows with the stock firmware [here](https://drive.usercontent.google.com/download?id=1ikE6tYCIbocTf1VvTtz4bKlRQWwa-2NZ&export=download&authuser=0&confirm=t&uuid=b8a30cbe-990a-43ea-8acb-39d9e0a17aad&at=AAINaIIYbL84rvMXUHHuJEcJtuD_%3A1781692831018) .
+
+PhoenixSuit/PhoenixUSBPro do not work on this specific Vinabox X6 Pro board from FEL mode. They may only work when Android is already booted and accessible through the normal Android flashing path via ADB.
