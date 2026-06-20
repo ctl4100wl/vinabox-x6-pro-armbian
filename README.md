@@ -136,7 +136,7 @@ echo heartbeat | sudo tee /sys/class/leds/x6pro:blue:status/trigger
   <summary>Guide</summary>
   
 Hold the button in the hole you found at the back of the box right at bottom middle of 2 usb ports then plug Type A-A USB in and release, you should be in FEL
-Use OpenixSuit in FEL/libusb mode on Windows with the stock firmware [here](https://drive.usercontent.google.com/download?id=1ikE6tYCIbocTf1VvTtz4bKlRQWwa-2NZ&export=download&authuser=0&confirm=t&uuid=b8a30cbe-990a-43ea-8acb-39d9e0a17aad&at=AAINaIIYbL84rvMXUHHuJEcJtuD_%3A1781692831018) .
+Use OpenixSuit in FEL/libusb mode on Windows with the [stock](https://drive.usercontent.google.com/download?id=1ikE6tYCIbocTf1VvTtz4bKlRQWwa-2NZ&export=download&authuser=0&confirm=t&uuid=b8a30cbe-990a-43ea-8acb-39d9e0a17aad&at=AAINaIIYbL84rvMXUHHuJEcJtuD_%3A1781692831018) firmware.
 
-PhoenixSuit/PhoenixUSBPro do not work on this specific Vinabox X6 Pro board from FEL mode. They may only work when Android is already booted and accessible through the normal Android flashing path via ADB.
+PhoenixSuit/PhoenixUSBPro do not work on this specific Vinabox X6 Pro board in FEL mode. They may only work when Android is already booted and accessible through the normal Android flashing path via ADB.
 </details>
