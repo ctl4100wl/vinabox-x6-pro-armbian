@@ -13,7 +13,7 @@
 - Desktop GUI
 - XFCE
 - Firefox
-- Extra packages
+- Extra packages \n
 Users can install their own GUI later, for example:
   sudo apt update
   sudo apt install xfce4 lightdm firefox-esr
