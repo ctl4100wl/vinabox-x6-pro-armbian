@@ -23,7 +23,11 @@ Users can install their own GUI later, for example:
 - You must have UART hooked in your board (115200 baud, 8N1 config in minicom or any serial terminal)
 - Recommend using Linux PC to run sunxi-fel, they are not working great on WSL2 with USB Passthrough (usually timeout)
 # Installation guide
-## Load images to ram and boot to rescue u-boot first
+
+<details>
+  <summary>Installation</summary>
+  
+  ## Load images to ram and boot to rescue u-boot first
 ```
 cd "your-location/vinabox-x6pro-working-kit/rescue"
 
@@ -125,8 +129,14 @@ cat /sys/class/leds/x6pro:blue:status/trigger
 echo default-on | sudo tee /sys/class/leds/x6pro:red:pwr/trigger
 echo heartbeat | sudo tee /sys/class/leds/x6pro:blue:status/trigger
 ```
-## Returning to stock
-Hold the button in the hole you found at the back of the box right at bottom middle of 2 usb ports then plug Type A-A USB in and release, you should be in FEL
+</details>
+
+ ## Returning to stock
+<details>
+<summary> Guide </summary>
+
+  Hold the button in the hole you found at the back of the box right at bottom middle of 2 usb ports then plug Type A-A USB in and release, you should be in FEL
 Use OpenixSuit in FEL/libusb mode on Windows with the stock firmware [here](https://drive.usercontent.google.com/download?id=1ikE6tYCIbocTf1VvTtz4bKlRQWwa-2NZ&export=download&authuser=0&confirm=t&uuid=b8a30cbe-990a-43ea-8acb-39d9e0a17aad&at=AAINaIIYbL84rvMXUHHuJEcJtuD_%3A1781692831018) .
 
 PhoenixSuit/PhoenixUSBPro do not work on this specific Vinabox X6 Pro board from FEL mode. They may only work when Android is already booted and accessible through the normal Android flashing path via ADB.
+</details>
