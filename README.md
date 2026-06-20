@@ -13,10 +13,12 @@
 - Desktop GUI
 - XFCE
 - Firefox
-- Extra packages \
+- Extra packages: \
 Users can install their own GUI later, for example:
+  ```
   sudo apt update
   sudo apt install xfce4 lightdm firefox-esr
+  ```
 ## Requirements
 - You must have UART hooked in your board (115200 baud, 8N1 config in minicom or any serial terminal)
 - Recommend using Linux PC to run sunxi-fel, they are not working great on WSL2 with USB Passthrough (usually timeout)
