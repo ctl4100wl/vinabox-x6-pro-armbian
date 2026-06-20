@@ -9,7 +9,7 @@
 - Hostname: x6pro
 - MOTD: Vinabox X6 Pro
 - Board name patched in /etc/armbian-release
-Not included:
+## Not included:
 - Desktop GUI
 - XFCE
 - Firefox
